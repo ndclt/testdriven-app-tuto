@@ -41,3 +41,18 @@ def add_user():
         return jsonify(response_object), 400
 
 
+@users_blueprint.route('/users/<user_id>', methods=['GET'])
+def get_single_user(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    response_object = {
+        'status': 'success',
+        'data': {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'active': user.active
+        }
+    }
+    return jsonify(response_object), 200
+
+
