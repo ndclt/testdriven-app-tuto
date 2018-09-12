@@ -49,20 +49,21 @@ def get_single_user(user_id):
     }
     try:
         user = User.query.filter_by(id=user_id).first()
+        if not user:
+            return jsonify(response_object), 404
+        else:
+            response_object = {
+                'status': 'success',
+                'data': {
+                    'id': user.id,
+                    'username': user.username,
+                    'email': user.email,
+                    'active': user.active
+                }
+            }
+            return jsonify(response_object), 200
     except exc.DataError:
         return jsonify(response_object), 404
-    try:
-        response_object['data'] = {
-            'id': user.id,
-            'username': user.username,
-            'email': user.email,
-            'active': user.active
-        }
-    except AttributeError:
-        return jsonify(response_object), 404
-    else:
-        response_object['status'] = 'success'
-        response_object.pop('message')
-    return jsonify(response_object), 200
+
 
 
