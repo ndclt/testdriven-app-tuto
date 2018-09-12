@@ -83,7 +83,7 @@ class TestUserService(BaseTestCase):
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 400)
             self.assertIn(
-                'Sorry. That email already exits.', data['message'])
+                'Sorry. That email already exists.', data['message'])
             self.assertIn('fail', data['status'])
 
 if __name__ == '__main__':
