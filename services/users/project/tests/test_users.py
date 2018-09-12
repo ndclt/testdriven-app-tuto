@@ -6,6 +6,13 @@ from project.api.models import User
 from project import db
 
 
+def add_user(username, email):
+    user = User(username=username, email=email)
+    db.session.add(user)
+    db.session.commit()
+    return user
+
+
 class TestUserService(BaseTestCase):
     """Tests for the Users Service."""
 
@@ -90,9 +97,7 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
-        user = User(username='nd', email='nd@mherman.org')
-        db.session.add(user)
-        db.session.commit()
+        user = add_user('nd', 'nd@mherman.org')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
