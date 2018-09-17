@@ -4,14 +4,15 @@ import coverage
 from flask.cli import FlaskGroup
 from project import create_app, db
 from project.api.models import User
+from pathlib import Path
 
+
+coverage_path = Path(__file__).parent.joinpath('.coverage').resolve()
+coverage_config = Path(__file__).parent.joinpath('.coveragerc').resolve()
+print(f'path to .coverage: {coverage_path}.')
 COV = coverage.coverage(
-    branch=True,
-    include='project/*',
-    omit=[
-        'project/tests/*',
-        'project/config.py',
-    ]
+    data_file=str(coverage_path),
+    config_file=str(coverage_config)
 )
 COV.start()
 
@@ -55,8 +56,8 @@ def cov():
         print('Coverage Summary:')
         COV.report()
         COV.html_report()
+        COV.erase()
         return 0
-    COV.erase()
     return 1
 
 

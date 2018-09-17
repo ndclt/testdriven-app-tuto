@@ -1,0 +1,13 @@
+[run]
+branch=True
+omit =
+     project/tests/*
+     project/config.py
+     html_coverage/*
+include =
+     project/*
+debug =
+     config
+
+[html]
+directory = html_coverage

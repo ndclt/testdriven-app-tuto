@@ -19,6 +19,7 @@ COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 
 # add app
 COPY . /usr/src/app
+COPY ./.coveragerc /usr/src/app/.coveragerc
 
 # run server
 CMD ["/usr/src/app/entrypoint.sh"]
