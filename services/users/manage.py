@@ -9,7 +9,6 @@ from pathlib import Path
 
 coverage_path = Path(__file__).parent.joinpath('.coverage').resolve()
 coverage_config = Path(__file__).parent.joinpath('.coveragerc').resolve()
-print(f'path to .coverage: {coverage_path}.')
 COV = coverage.coverage(
     data_file=str(coverage_path),
     config_file=str(coverage_config)
