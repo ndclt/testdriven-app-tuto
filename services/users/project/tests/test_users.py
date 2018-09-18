@@ -29,7 +29,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/users',
-                data = json.dumps({
+                data=json.dumps({
                     'username': 'nd',
                     'email': 'nd@mherman.org'
                 }),
@@ -45,7 +45,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/users',
-                data = json.dumps({}),
+                data=json.dumps({}),
                 content_type='application/json',
             )
             data = json.loads(response.data.decode())
@@ -60,7 +60,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/users',
-                data = json.dumps({
+                data=json.dumps({
                     'email': 'nd@mherman.org'
                 }),
                 content_type='application/json',
@@ -75,7 +75,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             self.client.post(
                 '/users',
-                data = json.dumps({
+                data=json.dumps({
                     'username': 'nd',
                     'email': 'nd@mherman.org'
                 }),
@@ -83,7 +83,7 @@ class TestUserService(BaseTestCase):
             )
             response = self.client.post(
                 '/users',
-                data = json.dumps({
+                data=json.dumps({
                     'username': 'nd',
                     'email': 'nd@mherman.org'
                 }),
@@ -148,7 +148,7 @@ class TestUserService(BaseTestCase):
         self.assertIn(b'<p>No users!</p>', response.data)
 
     def test_main_with_users(self):
-        """Ensure the main route behaves correctly when users have been 
+        """Ensure the main route behaves correctly when users have been
         added to the database."""
         add_user('nd', 'nd@mherman.org')
         add_user('nc', 'nc@notreal.org')

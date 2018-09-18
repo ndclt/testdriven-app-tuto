@@ -42,10 +42,10 @@ def add_user():
             db.session.add(User(username=username, email=email))
             db.session.commit()
             response_object['status'] = 'success'
-            response_object['message']= f'{email} was added!'
+            response_object['message'] = f'{email} was added!'
             return jsonify(response_object), 201
         else:
-            response_object['message']= 'Sorry. That email already exists.'
+            response_object['message'] = 'Sorry. That email already exists.'
             return jsonify(response_object), 400
     except exc.IntegrityError as e:
         db.session.rollback()
@@ -87,6 +87,3 @@ def get_all_users():
         }
     }
     return jsonify(response_object), 200
-
-
-
