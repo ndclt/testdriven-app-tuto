@@ -6,3 +6,4 @@ Dockerfile-prod
 .coverage
 *~
 html_coverage
+migrations
