@@ -11,4 +11,11 @@ test('NavBar renders properly', () =>{
     const element = wrapper.find('strong');
     expect(element.length).toBe(1);
     expect(element.get(0).props.children).toBe(title);
-})
+});
+
+test('NavBar renders a snapshot properly', () => {
+    const tree = rendere.create(
+	<Router location="/"><NavBar title={title}/></Router>
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+});
