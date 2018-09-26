@@ -90,4 +90,3 @@ def logout_user():
             return jsonify(response_object), 401
     else:
         return jsonify(response_object), 403
-    

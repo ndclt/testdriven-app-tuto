@@ -16,7 +16,7 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
     created_date = db.Column(db.DateTime, default=func.now(), nullable=False)
-    
+
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
@@ -37,7 +37,8 @@ class User(db.Model):
             payload = {
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(
                     days=current_app.config.get('TOKEN_EXPIRATION_DAYS'),
-                    seconds=current_app.config.get('TOKEN_EXPIRATION_SECONDS')),
+                    seconds=current_app.config.get(
+                        'TOKEN_EXPIRATION_SECONDS')),
                 'iat': datetime.datetime.utcnow(),
                 'sub': user_id
             }
@@ -53,7 +54,8 @@ class User(db.Model):
     def decode_auth_token(auth_token):
         """Return decoded data"""
         try:
-            payload = jwt.decode(auth_token, current_app.config.get('SECRET_KEY'))
+            payload = jwt.decode(
+                auth_token, current_app.config.get('SECRET_KEY'))
             return payload['sub']
         except jwt.ExpiredSignatureError:
             return 'Signature expired. Please log in again.'
