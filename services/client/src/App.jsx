@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 import UsersList from './components/UsersList';
 import AddUser from './components/AddUser';
 import About from './components/About';
+import NavBar from './components/NavBar';
 
 class App extends Component {
     constructor(){
@@ -13,6 +14,7 @@ class App extends Component {
 	    users: [],
 	    username: '',
 	    email: '',
+	    title: 'TestDriven.io',
 	};
 	this.addUser = this.addUser.bind(this);
 	this.handleChange = this.handleChange.bind(this);
@@ -50,6 +52,8 @@ class App extends Component {
 
     render(){
 	return(
+	    <div>
+	      <NavBar title={this.state.title}/>
 	    <section className="section">
 	      <div className="container">
 		<div className="columns">
@@ -74,7 +78,8 @@ class App extends Component {
 		   </div>
 		</div>
 		</div>
-	     </section>
+		</section>
+		</div>
 	)
     }
 };
