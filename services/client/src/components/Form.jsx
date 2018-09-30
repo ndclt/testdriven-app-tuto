@@ -6,9 +6,8 @@ const Form = (props) =>{
 	  <h1 className="title is-1">{props.formType}</h1>
 	  <hr/><br/>
 	  <form onSubmit={(event) => props.handleUserFormSubmit(event)}>
-	    /* The && allows to print the field username only if the 
-               formType props is Register
-            */
+	    {/*The && allows to print the field username only if the 
+            formType props is Register*/}
 	    {props.formType === 'Register' &&
 		<div className="field">
 		      <input
