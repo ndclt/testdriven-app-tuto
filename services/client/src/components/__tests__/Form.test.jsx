@@ -34,3 +34,14 @@ test('Login Form renders properly', () => {
     expect(formGroup.get(0).props.children.props.value).toBe('');
 });
 
+test('Register Form renders a snapshot properly', () => {
+    const component = <Form formType={'Register'} formData={formData} />;
+    const tree = renderer.create(component).toJSON();
+    expect(tree).toMatchSnapshot();
+});
+
+test('Login Form renders a snapshot properly', () => {
+    const component = <Form formType={'Login'} formData={formData} />;
+    const tree = renderer.create(component).toJSON();
+    expect(tree).toMatchSnapshot();
+});
